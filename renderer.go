@@ -11,7 +11,7 @@ import (
 	bf "gopkg.in/russross/blackfriday.v2"
 )
 
-func (r *ChromaRenderer) renderWithChroma(w io.Writer, text []byte, data bf.CodeBlockData) error {
+func (r *Renderer) renderWithChroma(w io.Writer, text []byte, data bf.CodeBlockData) error {
 	var lexer chroma.Lexer
 	if len(data.Info) > 0 {
 		lexer = lexers.Get(string(data.Info))
@@ -33,15 +33,15 @@ func (r *ChromaRenderer) renderWithChroma(w io.Writer, text []byte, data bf.Code
 	return formatter.Format(w, cstyle, iterator)
 }
 
-// ChromaRenderer is a custom Blackfriday renderer that uses the capabilities of
+// Renderer is a custom Blackfriday renderer that uses the capabilities of
 // chroma to highlight code with triple backtick notation
-type ChromaRenderer struct {
+type Renderer struct {
 	Base  *bf.HTMLRenderer
 	Style string
 }
 
 // RenderNode satisfies the Renderer interface
-func (r *ChromaRenderer) RenderNode(w io.Writer, node *bf.Node, entering bool) bf.WalkStatus {
+func (r *Renderer) RenderNode(w io.Writer, node *bf.Node, entering bool) bf.WalkStatus {
 	switch node.Type {
 	case bf.CodeBlock:
 		if err := r.renderWithChroma(w, node.Literal, node.CodeBlockData); err != nil {
@@ -54,11 +54,11 @@ func (r *ChromaRenderer) RenderNode(w io.Writer, node *bf.Node, entering bool) b
 }
 
 // RenderHeader satisfies the Renderer interface
-func (r *ChromaRenderer) RenderHeader(w io.Writer, ast *bf.Node) {
+func (r *Renderer) RenderHeader(w io.Writer, ast *bf.Node) {
 	r.Base.RenderHeader(w, ast)
 }
 
 // RenderFooter satisfies the Renderer interface
-func (r *ChromaRenderer) RenderFooter(w io.Writer, ast *bf.Node) {
+func (r *Renderer) RenderFooter(w io.Writer, ast *bf.Node) {
 	r.Base.RenderFooter(w, ast)
 }
