@@ -69,8 +69,20 @@ func main() {
 }
 ```
 
+
+Will output :
+
+```html
+<p>This is some sample code.</p>
+<pre style="color:#f8f8f2;background-color:#272822"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Hi&#34;</span>)
+}
+</pre>
+```
+
 ## ToDo
 
 - [ ] Add tests
+- [ ] Add more flexibility (chroma capabilities)
 - [ ] Add a function to set the theme
 - [ ] Use directly `chroma.Style` in the structure
