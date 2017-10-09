@@ -1,4 +1,10 @@
 # bfchroma
+
+![Go Version](https://img.shields.io/badge/go-1.8-brightgreen.svg)
+![Go Version](https://img.shields.io/badge/go-1.9-brightgreen.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Depado/bfchroma)](https://goreportcard.com/report/github.com/Depado/bfchroma) 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Depado/bfchroma/blob/master/LICENSE)
+
 Integrating Chroma syntax highlighter as a blackfriday renderer
 
 ## Usage
