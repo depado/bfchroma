@@ -7,6 +7,26 @@
 
 Integrating Chroma syntax highlighter as a blackfriday renderer
 
+## Features
+
+This renderer integrates chroma to highlight code with triple backtick notation.
+It will try to use the given language when available otherwise it will try to
+detect the language. If none of these two method works it will fallback.
+
+````markdown
+```go
+fmt.Println("Chroma will use the given language : go")
+```
+
+```
+fmt.Println("Chroma will auto-detect the go language")
+```
+
+```
+chroma will fallback to a sane default as it can't determine the used language
+```
+````
+
 ## Usage
 
 ```go
