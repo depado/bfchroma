@@ -1,7 +1,18 @@
-# blackfriday-chroma
+# bfchroma
 Integrating Chroma syntax highlighter as a blackfriday renderer
 
 ## Usage
+
+```go
+bfchroma.Renderer{
+	Base: bf.NewHTMLRenderer(bf.HTMLRendererParameters{
+		Flags: bf.CommonHTMLFlags,
+	}),
+	Style: "monokai",
+}
+```
+
+## Example
 
 ```go
 package main
@@ -9,7 +20,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Depado/blackfriday-chroma"
+	"github.com/Depado/bfchroma"
 
 	bf "gopkg.in/russross/blackfriday.v2"
 )
@@ -21,7 +32,7 @@ fmt.Println("Hi")
 ` + "```"
 
 func main() {
-	r := bfchroma.ChromaRenderer{
+	r := bfchroma.Renderer{
 		Base: bf.NewHTMLRenderer(bf.HTMLRendererParameters{
 			Flags: bf.CommonHTMLFlags,
 		}),
@@ -31,3 +42,9 @@ func main() {
 	fmt.Println(string(html))
 }
 ```
+
+## ToDo
+
+- [ ] Add tests
+- [ ] Add a function to set the theme
+- [ ] Use directly `chroma.Style` in the structure
