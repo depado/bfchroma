@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Depado/bfchroma/blob/master/LICENSE)
 
 
-Integrating Chroma syntax highlighter as a blackfriday renderer
+Integrating [Chroma](https://github.com/alecthomas/chroma) syntax highlighter as a [Blackfriday](https://github.com/russross/blackfriday) renderer
 
 ## Install
 
@@ -48,6 +48,9 @@ html := bf.Run([]byte(md), bf.WithRenderer(bfchroma.NewRenderer()))
 
 - `Style(s string)`  
 Define the style used by chroma for the rendering. The full list can be found [here](https://github.com/alecthomas/chroma/tree/master/styles)
+- `ChromaStyle(*chroma.Style)`  
+This option can be used to passe directly a `*chroma.Style` instead of the 
+string representing the style as with the `Style(string)` option. 
 - `WithoutAutodetect()`  
 By default when no language information is written in the code block, this 
 renderer will try to auto-detect the used language. This option disables
@@ -85,9 +88,9 @@ r := bfchroma.NewRenderer(bfchroma.Extend(b))
 Use a different style
 
 ```go
-
 r := bfchroma.NewRenderer(bfchroma.Style("dracula"))
-
+// Or
+r = bfchroma.NewRenderer(bfchroma.ChromaStyle(styles.Dracula))
 ```
 
 ## Example
