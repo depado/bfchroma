@@ -17,6 +17,14 @@ type Option func(r *Renderer)
 // Default : "monokai"
 func Style(s string) Option {
 	return func(r *Renderer) {
+		r.Style = styles.Get(s)
+	}
+}
+
+// ChromaStyle is an option to directly set the style of the renderer using a
+// chroma style instead of a string
+func ChromaStyle(s *chroma.Style) Option {
+	return func(r *Renderer) {
 		r.Style = s
 	}
 }
@@ -38,6 +46,7 @@ func ChromaOptions(options ...html.Option) Option {
 	}
 }
 
+// Extend allows to specify the blackfriday renderer which is extended
 func Extend(br bf.Renderer) Option {
 	return func(r *Renderer) {
 		r.Base = br
@@ -50,18 +59,20 @@ func NewRenderer(options ...Option) *Renderer {
 		Base: bf.NewHTMLRenderer(bf.HTMLRendererParameters{
 			Flags: bf.CommonHTMLFlags,
 		}),
-		Style:      "monokai",
+		Style:      styles.Monokai,
 		Autodetect: true,
 	}
 	for _, option := range options {
 		option(r)
 	}
+	r.Formatter = html.New(r.ChromaOptions...)
 	return r
 }
 
 // RenderWithChroma will render the given text to the w io.Writer
 func (r *Renderer) RenderWithChroma(w io.Writer, text []byte, data bf.CodeBlockData) error {
 	var lexer chroma.Lexer
+
 	if len(data.Info) > 0 {
 		lexer = lexers.Get(string(data.Info))
 	} else if r.Autodetect {
@@ -70,16 +81,11 @@ func (r *Renderer) RenderWithChroma(w io.Writer, text []byte, data bf.CodeBlockD
 	if lexer == nil {
 		lexer = lexers.Fallback
 	}
-	cstyle := styles.Get(r.Style)
-	if cstyle == nil {
-		cstyle = styles.Fallback
-	}
-	formatter := html.New(r.ChromaOptions...)
 	iterator, err := lexer.Tokenise(nil, string(text))
 	if err != nil {
 		return err
 	}
-	return formatter.Format(w, cstyle, iterator)
+	return r.Formatter.Format(w, r.Style, iterator)
 }
 
 // Renderer is a custom Blackfriday renderer that uses the capabilities of
@@ -87,8 +93,9 @@ func (r *Renderer) RenderWithChroma(w io.Writer, text []byte, data bf.CodeBlockD
 type Renderer struct {
 	Base          bf.Renderer
 	Autodetect    bool
-	Style         string
 	ChromaOptions []html.Option
+	Style         *chroma.Style
+	Formatter     chroma.Formatter
 }
 
 // RenderNode satisfies the Renderer interface
