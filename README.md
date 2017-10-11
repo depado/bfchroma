@@ -7,6 +7,10 @@
 
 Integrating Chroma syntax highlighter as a blackfriday renderer
 
+## Install
+
+`go get -u github.com/Depado/bfchroma`
+
 ## Features
 
 This renderer integrates chroma to highlight code with triple backtick notation.
@@ -29,13 +33,58 @@ chroma will fallback to a sane default as it can't determine the used language
 
 ## Usage
 
+bfchroma uses the functional options approach so you can customize the behavior
+of the renderer. It uses sane defaults when no option is passed so you can use
+the renderer simply by doing so :
+
 ```go
-bfchroma.Renderer{
-	Base: bf.NewHTMLRenderer(bf.HTMLRendererParameters{
-		Flags: bf.CommonHTMLFlags,
-	}),
-	Style: "monokai",
-}
+html := bf.Run([]byte(md), bf.WithRenderer(bfchroma.NewRenderer()))
+```
+
+### Options
+
+- `Style(s string)`  
+Define the style used by chroma for the rendering. The full list can be found [here](https://github.com/alecthomas/chroma/tree/master/styles)
+- `WithoutAutodetect()`  
+By default when no language information is written in the code block, this 
+renderer will try to auto-detect the used language. This option disables
+this behavior and will fallback to a sane default when no language
+information is avaiable.
+- `Extend(bf.Renderer)`  
+This option allows to define the base blackfriday that will be extended.
+- `ChromaOptions(...html.Option)`  
+This option allows you to pass Chroma's html options in the renderer. Such
+options can be found [here](https://github.com/alecthomas/chroma#the-html-formatter).
+There is currently an issue with the `html.WithClasses()` option as it expects
+the CSS classes to be written separately. I'll come up with a fix later.
+
+### Option examples
+
+Disabling language auto-detection and displaying line numbers
+
+```go
+r := bfchroma.NewRenderer(
+	bfchroma.WithoutAutodetect(),
+	bfchroma.ChromaOptions(html.WithLineNumbers()),
+)
+```
+
+Extend a blackfriday renderer
+
+```go
+b := bf.NewHTMLRenderer(bf.HTMLRendererParameters{
+	Flags: bf.CommonHTMLFlags,
+})
+
+r := bfchroma.NewRenderer(bfchroma.Extend(b))
+```
+
+Use a different style
+
+```go
+
+r := bfchroma.NewRenderer(bfchroma.Style("dracula"))
+
 ```
 
 ## Example
@@ -53,18 +102,12 @@ import (
 
 var md = "This is some sample code.\n\n```go\n" +
 	`func main() {
-fmt.Println("Hi")
+	fmt.Println("Hi")
 }
 ` + "```"
 
 func main() {
-	r := bfchroma.Renderer{
-		Base: bf.NewHTMLRenderer(bf.HTMLRendererParameters{
-			Flags: bf.CommonHTMLFlags,
-		}),
-		Style: "monokai",
-	}
-	html := bf.Run([]byte(md), bf.WithRenderer(&r))
+	html := bf.Run([]byte(md), bf.WithRenderer(bfchroma.NewRenderer()))
 	fmt.Println(string(html))
 }
 ```
@@ -83,6 +126,5 @@ Will output :
 ## ToDo
 
 - [ ] Add tests
-- [ ] Add more flexibility (chroma capabilities)
-- [ ] Add a function to set the theme
-- [ ] Use directly `chroma.Style` in the structure
+- [ ] Use directly `chroma.Style` in the structure ?
+- [ ] Allow the use of `html.WithClasses()` 
