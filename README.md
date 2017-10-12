@@ -6,6 +6,7 @@
 [![Build Status](https://drone.depado.eu/api/badges/Depado/bfchroma/status.svg)](https://drone.depado.eu/Depado/bfchroma)
 [![codecov](https://codecov.io/gh/Depado/bfchroma/branch/master/graph/badge.svg)](https://codecov.io/gh/Depado/bfchroma)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Depado/bfchroma/blob/master/LICENSE)
+[![Godoc](https://godoc.org/github.com/Depado/bfchroma?status.svg)](https://godoc.org/github.com/Depado/bfchroma)
 
 
 Integrating [Chroma](https://github.com/alecthomas/chroma) syntax highlighter as a [Blackfriday](https://github.com/russross/blackfriday) renderer

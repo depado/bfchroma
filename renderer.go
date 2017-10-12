@@ -1,3 +1,5 @@
+// Package bfchroma provides an easy and extensible blackfriday renderer that
+// uses the chroma syntax highlighter to render code blocks.
 package bfchroma
 
 import (
@@ -73,6 +75,7 @@ func NewRenderer(options ...Option) *Renderer {
 func (r *Renderer) RenderWithChroma(w io.Writer, text []byte, data bf.CodeBlockData) error {
 	var lexer chroma.Lexer
 
+	// Determining the lexer to use
 	if len(data.Info) > 0 {
 		lexer = lexers.Get(string(data.Info))
 	} else if r.Autodetect {
@@ -81,6 +84,8 @@ func (r *Renderer) RenderWithChroma(w io.Writer, text []byte, data bf.CodeBlockD
 	if lexer == nil {
 		lexer = lexers.Fallback
 	}
+
+	// Tokenize the code
 	iterator, err := lexer.Tokenise(nil, string(text))
 	if err != nil {
 		return err
@@ -95,7 +100,7 @@ type Renderer struct {
 	Autodetect    bool
 	ChromaOptions []html.Option
 	Style         *chroma.Style
-	Formatter     chroma.Formatter
+	Formatter     *html.Formatter
 }
 
 // RenderNode satisfies the Renderer interface

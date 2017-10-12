@@ -35,4 +35,14 @@ func main() {
 	)
 	h = bf.Run([]byte(md), bf.WithRenderer(r))
 	fmt.Println(string(h))
+
+	md := "```\npackage main\n\nfunc main() {\n}\n```"
+	r = bfchroma.NewRenderer(bfchroma.WithoutAutodetect())
+	h = bf.Run([]byte(md), bf.WithRenderer(r))
+	fmt.Println(string(h))
+
+	md = "```go\npackage main\n\nfunc main() {\n}\n```"
+	r = bfchroma.NewRenderer(bfchroma.ChromaOptions(html.WithLineNumbers()))
+	h = bf.Run([]byte(md), bf.WithRenderer(r))
+	fmt.Println(string(h))
 }
