@@ -1,6 +1,7 @@
 package bfchroma
 
 import (
+	"bytes"
 	"fmt"
 	"testing"
 
@@ -102,12 +103,48 @@ func ExampleChromaOptions() {
 }
 
 func TestRenderWithChroma(t *testing.T) {
+	var err error
+	var b *bytes.Buffer
+	r := NewRenderer()
+	tests := []struct {
+		in  []byte
+		cbd bf.CodeBlockData
+		out string
+	}{
+		{[]byte{0}, bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822\"><span style=\"\">\x00</span></pre>\n"},
+		{[]byte{0, 1, 2}, bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822\"><span style=\"\">\x00\x01\x02</span></pre>\n"},
+		{[]byte("Hello World"), bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822\"><span style=\"\">Hello World</span></pre>\n"},
+	}
+	for _, test := range tests {
+		b = new(bytes.Buffer)
+		err = r.RenderWithChroma(b, test.in, test.cbd)
+		assert.NoError(t, err, "Should not fail")
+		assert.Equal(t, b.String(), test.out)
+	}
+}
+
+func TestRender(t *testing.T) {
 	md := "```go\npackage main\n\nfunc main() {\n}\n```"
 	r := NewRenderer()
+	bg := r.Style.Get(chroma.Background).Background.String()
 
 	h := bf.Run([]byte(md), bf.WithRenderer(r))
 	assert.Contains(t, string(h), r.Style.Get(chroma.NameFunction).Colour.String())
-	assert.Contains(t, string(h), r.Style.Get(chroma.Background).Background.String())
+	assert.Contains(t, string(h), bg)
+	assert.Contains(t, string(h), "<pre")
+
+	// Check if auto-detection works on Go example
+	md = "```\npackage main\n\nfunc main() {\n}\n```"
+	h = bf.Run([]byte(md), bf.WithRenderer(r))
+	assert.Contains(t, string(h), r.Style.Get(chroma.NameFunction).Colour.String())
+	assert.Contains(t, string(h), bg)
+	assert.Contains(t, string(h), "<pre")
+
+	// Check if disabling the Autodetect feature works
+	r = NewRenderer(WithoutAutodetect())
+	h = bf.Run([]byte(md), bf.WithRenderer(r))
+	assert.NotContains(t, string(h), r.Style.Get(chroma.NameFunction).Colour.String())
+	assert.Contains(t, string(h), bg)
 	assert.Contains(t, string(h), "<pre")
 }
 
