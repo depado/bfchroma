@@ -6,7 +6,7 @@ import (
 	"github.com/Depado/bfchroma"
 	"github.com/alecthomas/chroma/formatters/html"
 
-	bf "gopkg.in/russross/blackfriday.v2"
+	bf "github.com/russross/blackfriday"
 )
 
 var md = "This is some sample code.\n\n```go\n" +
@@ -14,6 +14,7 @@ var md = "This is some sample code.\n\n```go\n" +
 	fmt.Println("Hi")
 }
 ` + "```"
+
 
 func main() {
 	var r *bfchroma.Renderer
