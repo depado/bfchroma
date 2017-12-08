@@ -19,21 +19,8 @@ Integrating [Chroma](https://github.com/alecthomas/chroma) syntax highlighter as
 
 This renderer integrates chroma to highlight code with triple backtick notation.
 It will try to use the given language when available otherwise it will try to
-detect the language. If none of these two method works it will fallback.
-
-````markdown
-```go
-fmt.Println("Chroma will use the given language : go")
-```
-
-```
-fmt.Println("Chroma will auto-detect the go language")
-```
-
-```
-chroma will fallback to a sane default as it can't determine the used language
-```
-````
+detect the language. If none of these two method works it will fallback to sane
+defaults.
 
 ## Usage
 
@@ -94,7 +81,7 @@ r := bfchroma.NewRenderer(bfchroma.Style("dracula"))
 r = bfchroma.NewRenderer(bfchroma.ChromaStyle(styles.Dracula))
 ```
 
-## Example
+## Examples
 
 ```go
 package main
@@ -130,8 +117,54 @@ Will output :
 </pre>
 ```
 
+## Real-life example
+
+In [smallblog](https://github.com/Depado/smallblog) I'm using bfchroma to render
+my articles. It's using a combination of both bfchroma's options and blackfriday
+extensions and flags.
+
+```go
+package main
+
+import (
+	"github.com/Depado/bfchroma"
+	"github.com/alecthomas/chroma/formatters/html"
+	bf "github.com/russross/blackfriday"
+)
+
+// Defines the extensions that are used
+var exts = bf.NoIntraEmphasis | bf.Tables | bf.FencedCode | bf.Autolink |
+	bf.Strikethrough | bf.SpaceHeadings | bf.BackslashLineBreak |
+	bf.DefinitionLists | bf.Footnotes
+
+// Defines the HTML rendering flags that are used
+var flags = bf.UseXHTML | bf.Smartypants | bf.SmartypantsFractions |
+	bf.SmartypantsDashes | bf.SmartypantsLatexDashes | bf.TOC
+
+// render will take a []byte input and will render it using a new renderer each
+// time because reusing the same can mess with TOC and header IDs
+func render(input []byte) []byte {
+	return bf.Run(
+		input,
+		bf.WithRenderer(
+			bfchroma.NewRenderer(
+				bfchroma.WithoutAutodetect(),
+				bfchroma.ChromaOptions(
+					html.WithLineNumbers(),
+				),
+				bfchroma.Extend(
+					bf.NewHTMLRenderer(bf.HTMLRendererParameters{
+						Flags: flags,
+					}),
+				),
+			),
+		),
+		bf.WithExtensions(exts),
+	)
+}
+```
+
+
 ## ToDo
 
-- [ ] Add tests
-- [ ] Use directly `chroma.Style` in the structure ?
 - [ ] Allow the use of `html.WithClasses()` 
