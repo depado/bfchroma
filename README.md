@@ -7,11 +7,16 @@
 [![codecov](https://codecov.io/gh/Depado/bfchroma/branch/master/graph/badge.svg)](https://codecov.io/gh/Depado/bfchroma)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Depado/bfchroma/blob/master/LICENSE)
 [![Godoc](https://godoc.org/github.com/Depado/bfchroma?status.svg)](https://godoc.org/github.com/Depado/bfchroma)
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/Depado)
 
 
-Integrating [Chroma](https://github.com/alecthomas/chroma) syntax highlighter as a [Blackfriday](https://github.com/russross/blackfriday) renderer
+Integrating [Chroma](https://github.com/alecthomas/chroma) syntax highlighter as a [Blackfriday](https://github.com/russross/blackfriday) renderer.
 
-## Install
+## Install and prerequisites
+
+You will need the `v2` version of Blackfriday to use this lib. Either update
+your existing version of Blackfriday or use `dep ensure` to pull the 
+dependencies automatically. 
 
 `go get -u github.com/Depado/bfchroma`
 
