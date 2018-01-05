@@ -14,9 +14,10 @@ Integrating [Chroma](https://github.com/alecthomas/chroma) syntax highlighter as
 
 ## Install and prerequisites
 
-You will need the `v2` version of Blackfriday to use this lib. Either update
-your existing version of Blackfriday or use `dep ensure` to pull the 
-dependencies automatically. 
+This project requires and uses the `v2` version of 
+[Blackfriday](https://github.com/russross/blackfriday/tree/v2). After 
+[this issue](https://github.com/Depado/bfchroma/issues/3) I decided to rollback
+to the `gopkg.in` version so the lib can be go gettable. 
 
 `go get -u github.com/Depado/bfchroma`
 
