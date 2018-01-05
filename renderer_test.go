@@ -110,15 +110,15 @@ func TestRenderWithChroma(t *testing.T) {
 		cbd bf.CodeBlockData
 		out string
 	}{
-		{[]byte{0}, bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822\"><span style=\"\">\x00</span></pre>\n"},
-		{[]byte{0, 1, 2}, bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822\"><span style=\"\">\x00\x01\x02</span></pre>\n"},
-		{[]byte("Hello World"), bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822\"><span style=\"\">Hello World</span></pre>\n"},
+		{[]byte{0}, bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822\">\x00</pre>"},
+		{[]byte{0, 1, 2}, bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822\">\x00\x01\x02</pre>"},
+		{[]byte("Hello World"), bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822\">Hello World</pre>"},
 	}
 	for _, test := range tests {
 		b = new(bytes.Buffer)
 		err = r.RenderWithChroma(b, test.in, test.cbd)
 		assert.NoError(t, err, "Should not fail")
-		assert.Equal(t, b.String(), test.out)
+		assert.Equal(t, test.out, b.String())
 	}
 }
 
