@@ -4,8 +4,8 @@
 [[projects]]
   name = "github.com/alecthomas/chroma"
   packages = [".","formatters/html","lexers","styles"]
-  revision = "bc2d6680e4f0f640898b2564c3d479d5cb9023f3"
-  version = "v0.1.1"
+  revision = "e0f32fbcb59bc99c521910291b7ba8ecdb17ca34"
+  version = "v0.2.1"
 
 [[projects]]
   branch = "master"
@@ -32,12 +32,6 @@
   version = "v1.0.0"
 
 [[projects]]
-  name = "github.com/russross/blackfriday"
-  packages = ["."]
-  revision = "cadec560ec52d93835bf2f15bd794700d3a2473b"
-  version = "v2.0.0"
-
-[[projects]]
   branch = "master"
   name = "github.com/shurcooL/sanitized_anchor_name"
   packages = ["."]
@@ -46,12 +40,18 @@
 [[projects]]
   name = "github.com/stretchr/testify"
   packages = ["assert"]
-  revision = "69483b4bd14f5845b5a1e55bca19e954e827f1d0"
-  version = "v1.1.4"
+  revision = "b91bfb9ebec76498946beb6af7c0230c7cc7ba6c"
+  version = "v1.2.0"
+
+[[projects]]
+  name = "gopkg.in/russross/blackfriday.v2"
+  packages = ["."]
+  revision = "cadec560ec52d93835bf2f15bd794700d3a2473b"
+  version = "v2.0.0"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "6f06c75ea3a917016d901a6c2854e142e093ad8c01ebcf419bb7671b7796a83d"
+  inputs-digest = "3146f0109a9709ad44d71787b30dea960c00b48058357a8db5217675897f8a0f"
   solver-name = "gps-cdcl"
   solver-version = 1

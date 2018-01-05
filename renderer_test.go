@@ -8,8 +8,8 @@ import (
 	"github.com/alecthomas/chroma"
 	"github.com/alecthomas/chroma/formatters/html"
 	"github.com/alecthomas/chroma/styles"
-	bf "github.com/russross/blackfriday"
 	"github.com/stretchr/testify/assert"
+	bf "gopkg.in/russross/blackfriday.v2"
 )
 
 func TestExtend(t *testing.T) {
