@@ -49,7 +49,7 @@ string representing the style as with the `Style(string)` option.
 By default when no language information is written in the code block, this 
 renderer will try to auto-detect the used language. This option disables
 this behavior and will fallback to a sane default when no language
-information is avaiable.
+information is available.
 - `Extend(bf.Renderer)`  
 This option allows to define the base blackfriday that will be extended.
 - `ChromaOptions(...html.Option)`  
@@ -170,7 +170,32 @@ func render(input []byte) []byte {
 }
 ```
 
+## Classes
 
-## ToDo
+If you have loads of code in your markdown, you might want to consider using
+`html.WithClasses()` in your `bfchroma.ChromaOptions()`. The CSS of the style
+you chose can then be accessed like this :
 
-- [ ] Allow the use of `html.WithClasses()` 
+```go
+r := bfchroma.NewRenderer(
+	bfchroma.WithoutAutodetect(),
+	bfchroma.Extend(
+		bf.NewHTMLRenderer(bf.HTMLRendererParameters{Flags: flags}),
+	),
+	bfchroma.Style("monokai"),
+	bfchroma.ChromaOptions(html.WithClasses()),
+)
+
+var css template.CSS
+
+b := new(bytes.Buffer)
+if err := r.Formatter.WriteCSS(b, r.Style); err != nil {
+	logrus.WithError(err).Warning("Couldn't write CSS")
+}
+css = template.CSS(b.String())
+
+bf.Run(input, bf.WithRenderer(r), bf.WithExtensions(exts))
+```
+
+This way, you can pass your `css` var to any template and render it along the
+rendered markdown.
