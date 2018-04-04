@@ -3,9 +3,39 @@
 
 [[projects]]
   name = "github.com/alecthomas/chroma"
-  packages = [".","formatters/html","lexers","styles"]
-  revision = "e0f32fbcb59bc99c521910291b7ba8ecdb17ca34"
-  version = "v0.2.1"
+  packages = [
+    ".",
+    "formatters/html",
+    "lexers",
+    "lexers/a",
+    "lexers/b",
+    "lexers/c",
+    "lexers/d",
+    "lexers/e",
+    "lexers/f",
+    "lexers/g",
+    "lexers/h",
+    "lexers/i",
+    "lexers/internal",
+    "lexers/j",
+    "lexers/k",
+    "lexers/l",
+    "lexers/m",
+    "lexers/n",
+    "lexers/o",
+    "lexers/p",
+    "lexers/q",
+    "lexers/r",
+    "lexers/s",
+    "lexers/t",
+    "lexers/v",
+    "lexers/w",
+    "lexers/x",
+    "lexers/y",
+    "styles"
+  ]
+  revision = "3020e2ea8c6b1a9c2336022d847c4392c3997f02"
+  version = "v0.4.0"
 
 [[projects]]
   branch = "master"
@@ -21,7 +51,10 @@
 
 [[projects]]
   name = "github.com/dlclark/regexp2"
-  packages = [".","syntax"]
+  packages = [
+    ".",
+    "syntax"
+  ]
   revision = "487489b64fb796de2e55f4e8a4ad1e145f80e957"
   version = "v1.1.6"
 
@@ -40,8 +73,8 @@
 [[projects]]
   name = "github.com/stretchr/testify"
   packages = ["assert"]
-  revision = "b91bfb9ebec76498946beb6af7c0230c7cc7ba6c"
-  version = "v1.2.0"
+  revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
+  version = "v1.2.1"
 
 [[projects]]
   name = "gopkg.in/russross/blackfriday.v2"
@@ -52,6 +85,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "3146f0109a9709ad44d71787b30dea960c00b48058357a8db5217675897f8a0f"
+  inputs-digest = "c2b066a03bec3385904077c618c1b65d91f1e3862993969baa8847f34c91a1a1"
   solver-name = "gps-cdcl"
   solver-version = 1
