@@ -1,7 +1,6 @@
 # bfchroma
 
-![Go Version](https://img.shields.io/badge/go-1.8-brightgreen.svg)
-![Go Version](https://img.shields.io/badge/go-1.9-brightgreen.svg)
+![Go Version](https://img.shields.io/badge/go-1.10-brightgreen.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Depado/bfchroma)](https://goreportcard.com/report/github.com/Depado/bfchroma)
 [![Build Status](https://drone.depado.eu/api/badges/Depado/bfchroma/status.svg)](https://drone.depado.eu/Depado/bfchroma)
 [![codecov](https://codecov.io/gh/Depado/bfchroma/branch/master/graph/badge.svg)](https://codecov.io/gh/Depado/bfchroma)
@@ -10,7 +9,8 @@
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/Depado)
 
 
-Integrating [Chroma](https://github.com/alecthomas/chroma) syntax highlighter as a [Blackfriday](https://github.com/russross/blackfriday) renderer.
+Integrating [Chroma](https://github.com/alecthomas/chroma) syntax highlighter as
+a [Blackfriday](https://github.com/russross/blackfriday) renderer.
 
 ## Install and prerequisites
 
@@ -19,7 +19,17 @@ This project requires and uses the `v2` version of
 [this issue](https://github.com/Depado/bfchroma/issues/3) I decided to rollback
 to the `gopkg.in` version so the lib can be go gettable. 
 
-`go get -u github.com/Depado/bfchroma`
+```
+$ go get -u github.com/Depado/bfchroma
+```
+
+You can also install it directly by using dep in your project:
+
+```
+$ dep ensure -add github.com/Depado/bfchroma
+```
+
+_Additionnaly, this project uses the module approach of go 1.11_ 
 
 ## Features
 
