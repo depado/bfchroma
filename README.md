@@ -1,5 +1,7 @@
 # bfchroma
 
+[![forthebadge](https://forthebadge.com/images/badges/made-with-go.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+
 ![Go Version](https://img.shields.io/badge/go-1.10-brightgreen.svg)
 ![Go Version](https://img.shields.io/badge/go-1.11-brightgreen.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Depado/bfchroma)](https://goreportcard.com/report/github.com/Depado/bfchroma)
