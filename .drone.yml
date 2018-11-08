@@ -3,20 +3,17 @@ kind: pipeline
 name: default
 
 steps:
-- name: prerequisites
-  image: golang:latest
-  pull: true
+- name: fetch
+  image: docker:git
   commands:
-  - go mod vendor
-  environment:
-    GO111MODULE: "on"
+  - git fetch --tags
 
 - name: test
   image: golang:latest
   commands:
   - go test -race -coverprofile=coverage.txt -covermode=atomic
   environment:
-    GO111MODULE: "off"
+    GO111MODULE: "on"
 
 - name: codecov
   image: robertstettner/drone-codecov
