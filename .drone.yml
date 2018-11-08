@@ -7,10 +7,9 @@ steps:
   image: golang:latest
   pull: true
   commands:
-  - go get -u github.com/golang/dep/cmd/dep
-  - dep ensure
+  - go mod vendor
   environment:
-    GO111MODULE: "off"
+    GO111MODULE: "on"
 
 - name: test
   image: golang:latest
