@@ -19,21 +19,13 @@ a [Blackfriday](https://github.com/russross/blackfriday) renderer.
 ## Install and prerequisites
 
 This project requires and uses the `v2` version of 
-[Blackfriday](https://github.com/russross/blackfriday/tree/v2). After 
-[this issue](https://github.com/Depado/bfchroma/issues/3) I decided to rollback
-to the `gopkg.in` version so the lib can be go gettable. 
+[Blackfriday](https://github.com/russross/blackfriday/tree/v2).
 
 ```
 $ go get -u github.com/Depado/bfchroma
 ```
 
-You can also install it directly by using dep in your project:
-
-```
-$ dep ensure -add github.com/Depado/bfchroma
-```
-
-_Additionnaly, this project uses the module approach of go 1.11_ 
+_This project uses the module approach of go 1.11_ 
 
 ## Features
 
@@ -111,7 +103,7 @@ import (
 
 	"github.com/Depado/bfchroma"
 
-	bf "gopkg.in/russross/blackfriday.v2"
+	bf "github.com/russross/blackfriday/v2"
 )
 
 var md = "This is some sample code.\n\n```go\n" +
@@ -149,7 +141,7 @@ package main
 import (
 	"github.com/Depado/bfchroma"
 	"github.com/alecthomas/chroma/formatters/html"
-	bf "github.com/russross/blackfriday"
+	bf "github.com/russross/blackfriday/v2"
 )
 
 // Defines the extensions that are used

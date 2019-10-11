@@ -10,11 +10,9 @@ require (
 	github.com/dlclark/regexp2 v1.1.6 // indirect
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/russross/blackfriday/v2 v2.0.1
 	github.com/sergi/go-diff v1.0.0 // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	github.com/stretchr/testify v1.2.2
 	golang.org/x/sys v0.0.0-20181107165924-66b7b1311ac8 // indirect
-	gopkg.in/russross/blackfriday.v2 v2.0.1
 )
-
-replace gopkg.in/russross/blackfriday.v2 => github.com/russross/blackfriday/v2 v2.0.1
