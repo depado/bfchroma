@@ -2,8 +2,7 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-go.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
-![Go Version](https://img.shields.io/badge/go-1.10-brightgreen.svg)
-![Go Version](https://img.shields.io/badge/go-1.11-brightgreen.svg)
+![Go Version](https://img.shields.io/badge/go-1.13-brightgreen.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Depado/bfchroma)](https://goreportcard.com/report/github.com/Depado/bfchroma)
 [![Build Status](https://drone.depado.eu/api/badges/Depado/bfchroma/status.svg)](https://drone.depado.eu/Depado/bfchroma)
 [![codecov](https://codecov.io/gh/Depado/bfchroma/branch/master/graph/badge.svg)](https://codecov.io/gh/Depado/bfchroma)

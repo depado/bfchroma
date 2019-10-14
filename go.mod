@@ -1,5 +1,7 @@
 module github.com/Depado/bfchroma
 
+go 1.13
+
 require (
 	github.com/alecthomas/assert v0.0.0-20170929043011-405dbfeb8e38 // indirect
 	github.com/alecthomas/chroma v0.6.0
