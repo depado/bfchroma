@@ -9,6 +9,7 @@ import (
 	"github.com/alecthomas/chroma/formatters/html"
 	"github.com/alecthomas/chroma/styles"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	bf "github.com/russross/blackfriday/v2"
 )
 
@@ -145,6 +146,23 @@ func TestRender(t *testing.T) {
 	assert.NotContains(t, string(h), r.Style.Get(chroma.NameFunction).Colour.String())
 	assert.Contains(t, string(h), bg)
 	assert.Contains(t, string(h), "<pre")
+}
+
+func TestRender_EmbedCSS(t *testing.T) {
+	r := NewRenderer(EmbedCSS())
+	h := bf.Run([]byte(""), bf.WithRenderer(r))
+	assert.Contains(t, string(h),"<style>")
+	assert.Contains(t, string(h),".chroma")
+	assert.Contains(t, string(h),"</style>")
+}
+
+func TestRenderer_ChromaCSS(t *testing.T) {
+	r := NewRenderer()
+	var w bytes.Buffer
+	err := r.ChromaCSS(&w)
+	require.NoError(t,err)
+	assert.Contains(t, w.String(),".chroma")
+
 }
 
 func ExampleNewRenderer() {
