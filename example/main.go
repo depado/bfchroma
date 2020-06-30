@@ -31,7 +31,7 @@ func main() {
 	r = bfchroma.NewRenderer(
 		bfchroma.WithoutAutodetect(),
 		bfchroma.Extend(b),
-		bfchroma.ChromaOptions(html.WithLineNumbers()),
+		bfchroma.ChromaOptions(html.WithLineNumbers(true)),
 	)
 	h = bf.Run([]byte(md), bf.WithRenderer(r))
 	fmt.Println(string(h))
@@ -42,7 +42,7 @@ func main() {
 	fmt.Println(string(h))
 
 	md = "```go\npackage main\n\nfunc main() {\n}\n```"
-	r = bfchroma.NewRenderer(bfchroma.ChromaOptions(html.WithLineNumbers()))
+	r = bfchroma.NewRenderer(bfchroma.ChromaOptions(html.WithLineNumbers(true)))
 	h = bf.Run([]byte(md), bf.WithRenderer(r))
 	fmt.Println(string(h))
 }

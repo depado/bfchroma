@@ -8,9 +8,9 @@ import (
 	"github.com/alecthomas/chroma"
 	"github.com/alecthomas/chroma/formatters/html"
 	"github.com/alecthomas/chroma/styles"
+	bf "github.com/russross/blackfriday/v2"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	bf "github.com/russross/blackfriday/v2"
 )
 
 func TestExtend(t *testing.T) {
@@ -90,13 +90,13 @@ func ExampleWithoutAutodetect() {
 }
 
 func TestChromaOptions(t *testing.T) {
-	NewRenderer(ChromaOptions(html.WithClasses()))
+	NewRenderer(ChromaOptions(html.WithClasses(true)))
 }
 
 func ExampleChromaOptions() {
 	md := "```go\npackage main\n\nfunc main() {\n}\n```"
 
-	r := NewRenderer(ChromaOptions(html.WithLineNumbers()))
+	r := NewRenderer(ChromaOptions(html.WithLineNumbers(true)))
 
 	h := bf.Run([]byte(md), bf.WithRenderer(r))
 	fmt.Println(string(h))
@@ -151,17 +151,17 @@ func TestRender(t *testing.T) {
 func TestRender_EmbedCSS(t *testing.T) {
 	r := NewRenderer(EmbedCSS())
 	h := bf.Run([]byte(""), bf.WithRenderer(r))
-	assert.Contains(t, string(h),"<style>")
-	assert.Contains(t, string(h),".chroma")
-	assert.Contains(t, string(h),"</style>")
+	assert.Contains(t, string(h), "<style>")
+	assert.Contains(t, string(h), ".chroma")
+	assert.Contains(t, string(h), "</style>")
 }
 
 func TestRenderer_ChromaCSS(t *testing.T) {
 	r := NewRenderer()
 	var w bytes.Buffer
 	err := r.ChromaCSS(&w)
-	require.NoError(t,err)
-	assert.Contains(t, w.String(),".chroma")
+	require.NoError(t, err)
+	assert.Contains(t, w.String(), ".chroma")
 
 }
 
@@ -175,7 +175,7 @@ func ExampleNewRenderer() {
 		})),
 		WithoutAutodetect(),
 		ChromaStyle(styles.GitHub),
-		ChromaOptions(html.WithLineNumbers()),
+		ChromaOptions(html.WithLineNumbers(true)),
 	)
 
 	h := bf.Run([]byte(md), bf.WithRenderer(r))
