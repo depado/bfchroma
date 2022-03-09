@@ -2,7 +2,6 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-go.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
-![Go Version](https://img.shields.io/badge/go-1.13-brightgreen.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Depado/bfchroma)](https://goreportcard.com/report/github.com/Depado/bfchroma)
 [![Build Status](https://drone.depa.do/api/badges/Depado/bfchroma/status.svg)](https://drone.depa.do/Depado/bfchroma)
 [![codecov](https://codecov.io/gh/Depado/bfchroma/branch/master/graph/badge.svg)](https://codecov.io/gh/Depado/bfchroma)
@@ -21,10 +20,8 @@ This project requires and uses the `v2` version of
 [Blackfriday](https://github.com/russross/blackfriday/tree/v2).
 
 ```
-$ go get -u github.com/Depado/bfchroma
+$ go get github.com/Depado/bfchroma
 ```
-
-_This project uses the module approach of go 1.11_ 
 
 ## Features
 
