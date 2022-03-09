@@ -1,11 +1,16 @@
 module github.com/Depado/bfchroma
 
-go 1.14
+go 1.17
 
 require (
-	github.com/alecthomas/chroma v0.7.3
-	github.com/alecthomas/repr v0.0.0-20200325044227-4184120f674c // indirect
-	github.com/russross/blackfriday/v2 v2.0.1
-	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
-	github.com/stretchr/testify v1.6.1
+	github.com/alecthomas/chroma v0.10.0
+	github.com/russross/blackfriday/v2 v2.1.0
+	github.com/stretchr/testify v1.7.0
+)
+
+require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/dlclark/regexp2 v1.4.0 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
 )

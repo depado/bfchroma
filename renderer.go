@@ -108,7 +108,7 @@ type Renderer struct {
 	ChromaOptions []html.Option
 	Style         *chroma.Style
 	Formatter     *html.Formatter
-	embedCSS bool
+	embedCSS      bool
 }
 
 // RenderNode satisfies the Renderer interface
@@ -116,9 +116,9 @@ func (r *Renderer) RenderNode(w io.Writer, node *bf.Node, entering bool) bf.Walk
 	switch node.Type {
 	case bf.Document:
 		if entering && r.embedCSS {
-			w.Write([]byte("<style>"))
-			r.Formatter.WriteCSS(w, r.Style)
-			w.Write([]byte("</style>"))
+			w.Write([]byte("<style>"))       // nolint: errcheck
+			r.Formatter.WriteCSS(w, r.Style) // nolint: errcheck
+			w.Write([]byte("</style>"))      // nolint: errcheck
 		}
 		return r.Base.RenderNode(w, node, entering)
 	case bf.CodeBlock:
