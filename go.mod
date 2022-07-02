@@ -1,4 +1,4 @@
-module github.com/Depado/bfchroma
+module github.com/Depado/bfchroma/v2
 
 go 1.17
 
