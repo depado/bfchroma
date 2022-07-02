@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/alecthomas/chroma"
-	"github.com/alecthomas/chroma/formatters/html"
-	"github.com/alecthomas/chroma/styles"
+	"github.com/alecthomas/chroma/v2"
+	"github.com/alecthomas/chroma/v2/formatters/html"
+	"github.com/alecthomas/chroma/v2/styles"
 	bf "github.com/russross/blackfriday/v2"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

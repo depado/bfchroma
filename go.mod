@@ -3,7 +3,7 @@ module github.com/Depado/bfchroma
 go 1.17
 
 require (
-	github.com/alecthomas/chroma v0.10.0
+	github.com/alecthomas/chroma/v2 v2.2.0
 	github.com/russross/blackfriday/v2 v2.1.0
 	github.com/stretchr/testify v1.7.0
 )
