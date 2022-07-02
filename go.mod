@@ -2,8 +2,6 @@ module github.com/Depado/bfchroma/v2
 
 go 1.18
 
-replace github.com/Depado/bfchroma/v2 => ./
-
 require (
 	github.com/alecthomas/chroma/v2 v2.2.0
 	github.com/russross/blackfriday/v2 v2.1.0
