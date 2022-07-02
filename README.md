@@ -16,11 +16,11 @@ a [Blackfriday](https://github.com/russross/blackfriday) renderer.
 
 ## Install and prerequisites
 
-This project requires and uses the `v2` version of 
+This project requires and uses the `v2` version of
 [Blackfriday](https://github.com/russross/blackfriday/tree/v2).
 
 ```
-$ go get github.com/Depado/bfchroma
+$ go get github.com/Depado/bfchroma/v2
 ```
 
 ## Features
@@ -42,22 +42,22 @@ html := bf.Run([]byte(md), bf.WithRenderer(bfchroma.NewRenderer()))
 
 ### Options
 
-- `Style(s string)`  
+- `Style(s string)`
 Define the style used by chroma for the rendering. The full list can be found [here](https://github.com/alecthomas/chroma/tree/master/styles)
-- `ChromaStyle(*chroma.Style)`  
-This option can be used to passe directly a `*chroma.Style` instead of the 
-string representing the style as with the `Style(string)` option. 
-- `WithoutAutodetect()`  
-By default when no language information is written in the code block, this 
+- `ChromaStyle(*chroma.Style)`
+This option can be used to passe directly a `*chroma.Style` instead of the
+string representing the style as with the `Style(string)` option.
+- `WithoutAutodetect()`
+By default when no language information is written in the code block, this
 renderer will try to auto-detect the used language. This option disables
 this behavior and will fallback to a sane default when no language
 information is available.
-- `EmbedCSS()` 
-This option will embed CSS needed for chroma's `html.WithClasses()` at the beginning of blackfriday document. 
-CSS can also be extracted separately by calling `Renderer`'s.`ChromaCSS(w)` method, which will return styleshet for currently set style 
-- `Extend(bf.Renderer)`  
+- `EmbedCSS()`
+This option will embed CSS needed for chroma's `html.WithClasses()` at the beginning of blackfriday document.
+CSS can also be extracted separately by calling `Renderer`'s.`ChromaCSS(w)` method, which will return styleshet for currently set style
+- `Extend(bf.Renderer)`
 This option allows to define the base blackfriday that will be extended.
-- `ChromaOptions(...html.Option)`  
+- `ChromaOptions(...html.Option)`
 This option allows you to pass Chroma's html options in the renderer. Such
 options can be found [here](https://github.com/alecthomas/chroma#the-html-formatter).
 
@@ -100,7 +100,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Depado/bfchroma"
+	"github.com/Depado/bfchroma/v2"
 
 	bf "github.com/russross/blackfriday/v2"
 )
@@ -138,7 +138,8 @@ extensions and flags.
 package main
 
 import (
-	"github.com/Depado/bfchroma"
+	"github.com/Depado/bfchroma/v2"
+
 	"github.com/alecthomas/chroma/formatters/html"
 	bf "github.com/russross/blackfriday/v2"
 )
