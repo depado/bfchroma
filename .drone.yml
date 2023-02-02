@@ -5,7 +5,7 @@ type: docker
 
 steps:
 - name: test
-  image: golang:latest
+  image: golang:1.19.5
   volumes:
   - name: deps
     path: /go
@@ -13,7 +13,7 @@ steps:
   - go test -race -coverprofile=coverage.txt -covermode=atomic
 
 - name: linter
-  image: golang:latest
+  image: golang:1.19.5
   volumes:
     - name: deps
       path: /go

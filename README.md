@@ -140,7 +140,7 @@ package main
 import (
 	"github.com/Depado/bfchroma/v2"
 
-	"github.com/alecthomas/chroma/formatters/html"
+	"github.com/alecthomas/chroma/v2/formatters/html"
 	bf "github.com/russross/blackfriday/v2"
 )
 
