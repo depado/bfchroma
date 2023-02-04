@@ -111,9 +111,9 @@ func TestRenderWithChroma(t *testing.T) {
 		cbd bf.CodeBlockData
 		out string
 	}{
-		{[]byte{0}, bf.CodeBlockData{}, "<pre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;\"><code><span style=\"display:flex;\"><span>\x00</span></span></code></pre>"},
-		{[]byte{0, 1, 2}, bf.CodeBlockData{}, "<pre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;\"><code><span style=\"display:flex;\"><span>\x00\x01\x02</span></span></code></pre>"},
-		{[]byte("Hello World"), bf.CodeBlockData{}, "<pre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;\"><code><span style=\"display:flex;\"><span>Hello World</span></span></code></pre>"},
+		{[]byte{0}, bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822;\"><code><span style=\"display:flex;\"><span>\x00</span></span></code></pre>"},
+		{[]byte{0, 1, 2}, bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822;\"><code><span style=\"display:flex;\"><span>\x00\x01\x02</span></span></code></pre>"},
+		{[]byte("Hello World"), bf.CodeBlockData{}, "<pre style=\"color:#f8f8f2;background-color:#272822;\"><code><span style=\"display:flex;\"><span>Hello World</span></span></code></pre>"},
 	}
 	for _, test := range tests {
 		b = new(bytes.Buffer)
