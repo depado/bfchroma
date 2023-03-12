@@ -68,7 +68,7 @@ func NewRenderer(options ...Option) *Renderer {
 		Base: bf.NewHTMLRenderer(bf.HTMLRendererParameters{
 			Flags: bf.CommonHTMLFlags,
 		}),
-		Style:      styles.Monokai,
+		Style:      styles.Get("monokai"),
 		Autodetect: true,
 	}
 	for _, option := range options {

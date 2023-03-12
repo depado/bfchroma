@@ -67,7 +67,7 @@ func TestChromaStyle(t *testing.T) {
 func ExampleChromaStyle() {
 	md := "```go\npackage main\n\nfunc main() {\n}\n```"
 
-	r := NewRenderer(ChromaStyle(styles.GitHub))
+	r := NewRenderer(ChromaStyle(styles.Get("github")))
 
 	h := bf.Run([]byte(md), bf.WithRenderer(r))
 	fmt.Println(string(h))
@@ -174,7 +174,7 @@ func ExampleNewRenderer() {
 			Flags: bf.CommonHTMLFlags,
 		})),
 		WithoutAutodetect(),
-		ChromaStyle(styles.GitHub),
+		ChromaStyle(styles.Get("github")),
 		ChromaOptions(html.WithLineNumbers(true)),
 	)
 
