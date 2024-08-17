@@ -134,7 +134,7 @@ func TestRender(t *testing.T) {
 	assert.Contains(t, string(h), "<pre")
 
 	// Check if auto-detection works on Go example
-	md = "```\npackage main\n\nfunc main() {\n}\n```"
+	md = "```\npackage main\n\nfunc main() {\n\tfmt.Println()\n}\n```"
 	h = bf.Run([]byte(md), bf.WithRenderer(r))
 	assert.Contains(t, string(h), r.Style.Get(chroma.NameFunction).Colour.String())
 	assert.Contains(t, string(h), bg)
