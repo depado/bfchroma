@@ -13,8 +13,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: stable
-      - name: build
-        run: make build
       - name: test
         run: go test -race
 
