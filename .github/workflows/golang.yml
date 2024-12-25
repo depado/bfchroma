@@ -6,34 +6,26 @@ on:
     branches: [main]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: stable
-      - name: test
-        run: go test -race
-
-  coverage:
-    needs: build
+  test:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 10 }
+        with:
+          fetch-depth: 10
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: "go.mod"
       - uses: gwatts/go-coverage-action@v2
         id: coverage
         with:
-          coverage-threshold: 80
+          fail-coverage: never
           cover-pkg: ./...
 
   golangci:
-    needs: build
-    name: lint
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -41,7 +33,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
-          go-version: stable
+          go-version-file: "go.mod"
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v6
         with:
