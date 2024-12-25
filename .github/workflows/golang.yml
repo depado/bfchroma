@@ -20,7 +20,6 @@ jobs:
         with:
           go-version-file: "go.mod"
       - uses: gwatts/go-coverage-action@2845595538a59d63d1bf55f109c14e104c6f7cb3 # v2
-        id: coverage
         with:
           fail-coverage: never
           cover-pkg: ./...
@@ -29,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: read
+      checks: write
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-go@3041bf56c941b39c61721a86cd11f3bb1338122a # v5
