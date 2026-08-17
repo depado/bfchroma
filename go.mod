@@ -5,7 +5,7 @@ go 1.26
 require (
 	github.com/alecthomas/chroma/v2 v2.27.0
 	github.com/russross/blackfriday/v2 v2.1.0
-	github.com/stretchr/testify v1.11.1
+	github.com/stretchr/testify v1.12.0
 )
 
 require (
